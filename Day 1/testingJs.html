@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //object literal
+        // function address(city,state){
+        //     //const newAddress={newCity: city, newState:state};
+        //     // from to the short hand
+        //     const newAddress={city,state};// return obj type
+        //     // console.log(city);
+        //     // console.log(state);
+        //     console.log(newAddress)
+        // }
+        // address("Mdy","Saga")
+
+        //Object literal
+        // function addressMarker(address){
+        //     const newAdd={
+        //         city:address.city,
+        //         state:address.state,
+        //         country: "Myanmar"
+        //     };
+        //     console.log(newAdd);
+        // }
+            
+        // } From this to the short handed form
+        // function addressMarker(address){
+        //     const {city,state}= address;
+        //     const add={
+        //         city,
+        //         state,
+        //         country: "Myanmar",
+        //     }
+        //     console.log(`${add.city},${add.state},${add.country}`);
+        // }
+
+
+        //addressMarker({city:"Mandalay",state:"Sagaing"});
+
+        //for...of
+            // let incomes=[62000,7000,5000];
+            // let update=[];
+            // for(let income of incomes){
+            //     update.push(income+5000);
+            // }
+            // console.log(update);
+    
+            //spread operator
+            // let eg1=[1,2,3,4,5,6];
+            // console.log([...eg1]);
+
+            //Rest Operator
+            //  function add(...nums){
+            //     let total=0;
+            //+++++++++++ nums.reduce(function(x,y))
+            //     for(let num of nums){
+            //         total+=num;
+            //     }
+            //     console.log(total);
+            //  }
+            //  add(22,33,44)
+
+        //    Default Param
+        //    function add(numberArr=[]){
+        //     let total=0;
+        //     numberArr.forEach(element => {
+        //         total+=element;
+        //     });
+        //     console.log(total);
+        //    }
+        //    add();
+
+            //Include
+            // let arr=[11,12,13,13];
+            // console.log(arr.includes(5));
+            // export default first="hello";
+            // export const data=[11,12,13];
+            // console.log(data);
+            
+            //PadStart and padEnd
+            //To add the values to the starter string and
+            //values to the end of the string depending on how long 
+            //the string is
+          //  let exp="Hein";
+           // console.log(exp.padStart(20,"test"));// fill the string from the start of the current string
+            //console.log(exp.pad(10,"a"));// 10 is the length of string so if the current string is less than 10 fill the gap with the second parameter
+
+        //     //Class
+        //    class Animal{
+        //     constructor(types,legs){
+        //         this.type=types;
+        //         this.leg=legs;
+        //     }
+        //     makeNoise(sound){
+        //         console.log(sound);
+        //     }
+        //     static returnFuc(){
+        //         return 10;
+        //     }// does not need to create an object
+        //     //just call with the class.static function
+        //     get metaData(){// get keyword allow to access 
+        //         return `Type: ${this.type}, Legs: ${this.leg}`;
+        //     }
+        // }
+        //     let cat= new Animal('Cat',4);
+        //     // cat.makeNoise("Meow");
+        //     // console.log(cat);
+        //   console.log(cat.metaData);
+            // function add(num1){
+            //     const ex={
+            //         name:"Heein",
+            //     };
+            // }
+        
+            //async/ await in js is used to handle async operations in a cleaner and more readable way 
+            // async function fetchData(){
+            //     let response= await fetch('');
+            //     let data= await response.json('https://fakestoreapi.com/products/category/jewelery');
+            //     console.log(data);
+            // }
+            // fetchData();
+
+            //set in js is a built-in js obj that store unique values
+            // const myset= new Set();
+            // myset.add(1);
+            // myset.add(2);
+            // myset.add(2);
+            // console.log(typeof(myset));
+            const nums=new Set([1,2,2,3,4,]);
+            console.log(typeof(nums));
+    </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+export const data=[11,22,333];

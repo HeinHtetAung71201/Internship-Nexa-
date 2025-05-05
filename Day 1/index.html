@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Input Text to Console</title>
+</head>
+<body>
+  <input type="text" id="name" placeholder="Name">
+  <input type="text" id="school" placeholder="School">
+
+  <button onclick="display()">Submit</button>
+
+  <script>
+    import {first} from './testingJs.html';
+    console.log(first);
+    function display() {
+      const input = document.getElementById("name").value;
+      const input2 = document.getElementById("school").value;
+      console.log("Name", input);
+      console.log("School", input2);
+    }
+    
+  </script>
+</body>
+</html>
