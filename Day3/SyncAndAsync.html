@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Sync 
+        // can freeze the browser if a task take too long
+
+       async function syncExample() {
+            console.log("Start");
+
+            for (let i = 0; i < 1000; i++) {
+                console.log(i);
+                await new Promise(resolve => setTimeout(resolve, 10)); // waits 10ms
+            }
+
+            console.log("End");
+            }
+
+            syncExample();
+
+        
+    </script>
+</body>
+</html>
