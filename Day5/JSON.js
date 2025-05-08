@@ -66,7 +66,7 @@ const usersData = {
   
   // Modifying nested values
   usersData.address.city = "Los Angeles";
-  console.log(JSON.stringify(usersData));
+//   console.log(JSON.stringify(usersData));
   
 
 // Output: {"name":"Alice","age":26}
