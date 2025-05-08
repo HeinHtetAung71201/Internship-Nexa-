@@ -1,0 +1,76 @@
+
+  // import axios from 'axios';
+  // const axios = require('axios');
+  // fetch('https://fakestoreap.com/products/1')
+  //     .then(res=>res.json())
+  //     .then(json=>console.log(json))
+  //     .catch(error=>
+  //         console.log("Error: ", error));
+
+
+  // async function jewl(){
+  //     try{
+  //         const res= await fetch('https://fakestoreapi.com/products/category/jewelery');
+  //         const data= await(res.json());
+  //         console.log(data);
+  //         data.map(cate=>{
+  //             console.log(cate.title);
+  //         })
+  //     }
+  //     catch(error){
+  //         console.log("Error: ",error);
+  //     }
+  // }
+  // jewl();
+
+
+  // axios.get('https://fakestoreapi.com/products/1').then(response=> console.log(response.data));
+
+  // const promise = new Promise((resolve, reject) => {
+  //     const success = true;
+      
+  //     if (success) {
+  //         resolve("✅ Data loaded!");
+  //     } else {
+  //         reject("❌ Something went wrong.");
+  //     }
+  //     });
+
+  //     promise.then(result => {
+  //         console.log(result); // if resolved
+  //     }).catch(error => {
+  //     console.error(error); // if rejected
+  //     });
+
+  async function getUserProfile() {
+try {
+const response = await fetch('https://fakestoreapi.com/products', {
+method: 'GET',
+headers: {
+  'Authorization': 'Bearer YOUR_ACCESS_TOKEN',
+  'Accept': 'application/json'
+}
+});
+
+// Check if the response is successful
+if (!response.ok) {
+throw new Error(`HTTP error! status: ${response.status}`);
+}
+
+
+// Log some response headers
+console.log("Content-Type:", response.headers.get('Content-Type'));
+// console.log("Author:", response.headers.get('Authorization'));
+console.log("X-RateLimit-Limit:", response.headers.get('X-RateLimit-Limit')); // custom header
+
+// Parse the body
+const data = await response.json();
+console.log("User data:", data);
+
+} catch (error) {
+console.error("Error fetching user profile:", error.message);
+}
+}
+
+getUserProfile();
+
