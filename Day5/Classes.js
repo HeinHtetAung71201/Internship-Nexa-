@@ -61,6 +61,57 @@ class MathHelper {
 //   does not need to make instance for class
 //   console.log(MathHelper.square(5)); // Output: 25
 //   console.log(MathHelper.cube(3));   // Output: 27
-  
-    
 
+// Inherence (extending the class by another class)
+// Parent class (Base class)
+class Animal {
+    constructor(name) {
+      this.name = name;
+    }
+  
+    speak() {
+      console.log(`${this.name} makes a sound.`);
+    }
+  }
+  
+  // Child class (Derived class)
+  class Dog extends Animal {
+    
+    bark(){
+        console.log("woof woof");
+    }
+    // speak() {
+    //   console.log(`${this.name} barks.`);
+    // }
+  }
+  
+  const dog = new Dog("Buddy");
+//   dog.speak();// Output: Buddy barks.
+//   dog.bark() ;
+
+class BankAccount {
+    #balance = 0; // Private property
+  
+    deposit(amount) {
+      this.#balance += amount;
+    }
+  
+    getBalance() {
+      return this.#balance;
+    }
+  }
+  
+  const account = new BankAccount();
+  account.deposit(1000);
+//   console.log(account.getBalance()); // Output: 1000
+//   console.log(account.#balance); // Error: Private field '#balance' must be declared in an enclosing class
+  
+// nameless class (Anonymous)
+// const varible = class{
+//     ...
+// }
+  
+//Named Class
+//  const varible = class Name{
+//     .code
+//  }
