@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <script>
+
         //primitive DataType
 
         //String
@@ -136,6 +128,19 @@
         // const KOHein= new person("HeinHtetAung",23);
         // console.log(KOHein.namae);
 
-    </script>
-</body>
-</html>
+function fetchData(callback){
+   
+        const data ={
+            user:'Joe'
+        };
+        callback(null,data);
+}
+function handleData(error,data){
+    if(error){
+        console.log("error", error);
+    }
+    else{
+        console.log("Received data: ",data)
+    }
+}
+fetchData(handleData);
