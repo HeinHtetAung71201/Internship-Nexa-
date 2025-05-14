@@ -143,4 +143,13 @@ function handleData(error,data){
         console.log("Received data: ",data)
     }
 }
-fetchData(handleData);
+// fetchData(handleData);
+
+//Call back 
+function twice (num, func){
+    let result= func(num);
+    console.log(result*2) ;
+}
+twice(3,function (x) {
+    return x*x;
+})
