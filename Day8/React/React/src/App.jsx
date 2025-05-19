@@ -8,6 +8,10 @@ import StatePrictical from './Components/StatePrictical'
 import UseEffect from './Components/UseEffect'
 import Compostition from './Components/Compostition'
 import UseRef from './Components/UseRef'
+import Event from './Components/Event'
+import Person1Hof from './Components/Person1Hof'
+import Person2Hof from './Components/Person2Hof'
+import CRUD from './CRUD'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,7 +23,11 @@ function App() {
       {/* <StatePrictical/> */}
      {/* <UseEffect/> */}
       {/* <Compostition/> */}
-      <UseRef/>
+      {/* <UseRef/> */}
+      {/* <Event/> */}
+      {/* <Person1Hof/>
+      <Person2Hof/> */}
+      <CRUD/>
     </>
   )
 }
