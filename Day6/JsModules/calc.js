@@ -10,4 +10,4 @@ function div(a,b){
 //common js module for single access
 // module.exports=div;
 //For more than one, export must be an object for these
-// module.exports={add,div};
+module.exports={add,div};
