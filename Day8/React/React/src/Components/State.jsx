@@ -7,6 +7,7 @@ function State() {
   return (
     <div>
         <h1>Count :{count}</h1>
+        console.log("hello");
         <button onClick={increase}>Click to Icrease</button>
     </div>
   )
