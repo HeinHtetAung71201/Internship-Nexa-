@@ -27,10 +27,10 @@ const eff= useEffect(()=>{
     const editBtn=(id)=>{
         const value= prompt("Enter new Value :");
         if(value?.trim()){
-           console.log(arrayList);
+        //    console.log(arrayList);
            setArray((preArr)=>
                 preArr.map((item)=>
-                    item.id === id ? {...item,value : value.trim()} :item
+                    item.id === id ? {...item,value} :item
                 )
            );
             }

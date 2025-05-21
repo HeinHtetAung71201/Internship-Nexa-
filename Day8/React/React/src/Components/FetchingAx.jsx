@@ -53,6 +53,10 @@ const FetchingAx = () => {
 
   return (
     <div>
+        {/* <div className='flex content-center'>
+          <label htmlFor=""></label>
+          <input type="text" />
+        </div> */}
       {
         // console.log(data)
       data.map((item) => (
