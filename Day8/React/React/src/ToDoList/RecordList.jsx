@@ -8,35 +8,35 @@ export const RecordList = () => {
     const [isCheck,setCheck]= useState(false);
     const [edit,setEdit]= useState("");
     const [editId,setEditId]= useState("");
-    const handleCheck=(id)=>{
-        setCheck((prev) => ({
-            ...prev,
-            [id]: !prev[id],
-          }));
-    }
+    // const handleCheck=(id)=>{
+    //     setCheck((prev) => ({
+    //         ...prev,
+    //         [id]: !prev[id],
+    //       }));
+    // }
 
     const { array, setArray }= useContext(toDoContext);
     console.log("Array Used", array);
     const EditContent=(id,value)=>{
-        console.log("Edit :", id);
-        console.log("Value",value);
-        // {<InputBox sentValue={value}/>}
-        setEditId(id);
-        setEdit(value);
+        // console.log("Edit :", id);
+        // console.log("Value",value);
+        // // {<InputBox sentValue={value}/>}
+        // setEditId(id);
+        // setEdit(value);
         
 
-        // const newInput= prompt("Edit the text :");
-        // console.log(array);
-        // console.log(newInput);
-        // if(newInput?.trim()){
-        // console.log(newInput);
-        // const updated= {trimmedValue: newInput};
-        //     setArray((preArr)=>
-        //         preArr.map((item)=>
-        //             item.inputId === id ? {...item,...updated} : item  
-        //         )
-        //     )
-        // }
+        const newInput= prompt("Edit the text :");
+        console.log(array);
+        console.log(newInput);
+        if(newInput?.trim()){
+        console.log(newInput);
+        const updated= {trimmedValue: newInput};
+            setArray((preArr)=>
+                preArr.map((item)=>
+                    item.inputId === id ? {...item,...updated} : item  
+                )
+            )
+        }
     }
     const DelContent=(id)=>{
         const con= confirm("Do you want to delete item? ");

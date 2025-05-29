@@ -21,9 +21,9 @@ export const InputBox = () => {
     setValue("");
     console.log("ArrayList : ",array );
   }
-  const { editId, edit}= useContext(DataPassing);
-  console.log(editId,"sentId");
-  console.log(edit,"sentValue");
+  // const { editId, edit}= useContext(DataPassing);
+  // console.log(editId,"sentId");
+  // console.log(edit,"sentValue");
  
   return (
     <>
@@ -33,7 +33,6 @@ export const InputBox = () => {
     </div>
     <toDoContext.Provider value={{ array, setArray }}>
       <Record/>
-      {/* <EditContent/> */}
     </toDoContext.Provider>
     
     
