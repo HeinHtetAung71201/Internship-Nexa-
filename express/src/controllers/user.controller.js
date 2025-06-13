@@ -1,10 +1,35 @@
 const userModel = require("../models/user.model")
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
+const  userLogin = async (req, res) => {
+    // Handle user login logic here
+    const { email, password } = req.body;
+    if (!email || !password) {
+        return res.status(400).json({ message: "Email and password are required" });
+    }
+    // search user by email
+    const existedUser = await userModel.findOne({ email });
+    if (!existedUser) {
+        return res.status(404).json({ message: "User not found" });
+    }
 
+    if ( !bcrypt.compare(password, existedUser.password)) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+   }
+
+  // Create token
+  
+  const token = jwt.sign({ id: existedUser._id, username: existedUser.name }, process.env.SECRETKEY, { expiresIn: '1h' });
+  
+  res.json({ token });
+
+}
 const getUser = async (req, res) => {
    try { 
+    console.log(req.user, "user from middleware")
      const {   name } = req.query;
-          const  users = await userModel.find({name})
+          const  users = await userModel.find({})
         res.json({
             message: "get user list",
             data: users,
@@ -24,8 +49,10 @@ const createUser = async ( req, res ) => {
         console.log(req.body, "body") 
         const token = req.headers.token
         const id = req.params.id
-        const { name, email } = req.body // { name: 'Hein Htet Aung' }
-        const createdUser = await userModel.create(req.body)
+        const { name, email, password } = req.body // { name: 'Hein Htet Aung' }
+        const hashPassword =  bcrypt.hashSync(password, 10)
+        // console.log(hashPassword, "hashPassword")
+        const createdUser = await userModel.create({ name, email, password: hashPassword });
    
         res.json({
             message: "create user",
@@ -65,4 +92,4 @@ const deleteUser = async (req, res) => {
     }
 }
 
-module.exports ={ getUser, createUser, updateUser, deleteUser }
+module.exports ={ getUser, createUser, updateUser, deleteUser, userLogin }

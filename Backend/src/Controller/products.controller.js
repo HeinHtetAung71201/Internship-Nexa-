@@ -17,8 +17,9 @@ const InputProduct = async (req, res) => {
 // READ all products
 const SelectAllProducts = async (req, res) => {
   try {
-    const products = await productModel.find({ }).populate('category'); // ❗️ Added populate to include category details
-    res.json({ products });
+    const products = await productModel.find({ price: { $gt: 100 } },      // filter: price < 500
+  { name: 1, price: 1}).populate('category'); // ❗️ Added po  pulate to include category details
+    res.json({ data: products });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
