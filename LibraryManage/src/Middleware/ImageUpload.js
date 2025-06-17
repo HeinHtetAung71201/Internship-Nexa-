@@ -1,19 +1,20 @@
+const express = require('express')
 const multer  = require('multer')
-//const upload = multer({ dest: 'uploads/' })
 const path = require('path');
 
+const mongoose = require('mongoose');
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
+  destination: (_req, _file, cb) => {
     cb(null, 'uploads/'); // save to 'uploads' directory
   },
-  filename: (req, file, cb) => {
+  filename: (_req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     cb(null, uniqueSuffix + path.extname(file.originalname)); // unique name with original extension
   }
 });
 
 // File filter (optional: only accept images)
-const fileFilter = (req, file, cb) => {
+const fileFilter = (_req, file, cb) => {
   const allowedTypes = /jpeg|jpg|png|gif/;
   const extName = allowedTypes.test(path.extname(file.originalname).toLowerCase());
   const mimeType = allowedTypes.test(file.mimetype);
@@ -31,5 +32,5 @@ const upload = multer({
   fileFilter: fileFilter,
   limits: { fileSize: 5 * 1024 * 1024 } // 5 MB limit
 });
-
 module.exports = upload;
+

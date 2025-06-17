@@ -8,11 +8,9 @@ const categoryRoute= require('./Route/category.route');
 const app = express();
 const PORT = 5000;
 const MONGO_URI = 'mongodb://localhost:27017/bookstore';
-var cors = require('cors')
-const path = require('path');
-const fs = require('fs');
 const upload= require('./Middleware/ImageUpload');
-
+var cors = require('cors')
+const fs = require('fs');
 
 app.use(cors());
 
@@ -21,7 +19,7 @@ app.use(express.json());
 
 app.use('/uploads', express.static('uploads')); 
 
-app.post('/profile', upload.single('avatar'), function (req, res, _next) {
+app.post('/profile', function (req, res, _next) {
   // req.file is the `avatar` file
   // req.body will hold the text fields, if there were any
   console.log(req.file, "file")
@@ -35,6 +33,7 @@ app.post('/profile', upload.single('avatar'), function (req, res, _next) {
 app.use('/book', bookRoute);
 app.use('/auther', autherRoute);
 app.use('/category', categoryRoute);
+// app.use('/image', imgRouter);
 
 // Connect to MongoDB
 mongoose.connect(MONGO_URI, {
