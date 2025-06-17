@@ -1,4 +1,6 @@
-const express = require('express');
+const express = require('express')
+const multer  = require('multer')
+
 const mongoose = require('mongoose');
 const bookRoute = require('./Route/book.route');
 const autherRoute = require('./Route/auther.route');
@@ -7,11 +9,29 @@ const app = express();
 const PORT = 5000;
 const MONGO_URI = 'mongodb://localhost:27017/bookstore';
 var cors = require('cors')
- 
+const path = require('path');
+const fs = require('fs');
+const upload= require('./Middleware/ImageUpload');
+
+
 app.use(cors());
 
 app.use(express.json());
-// 
+
+
+app.use('/uploads', express.static('uploads')); 
+
+app.post('/profile', upload.single('avatar'), function (req, res, _next) {
+  // req.file is the `avatar` file
+  // req.body will hold the text fields, if there were any
+  console.log(req.file, "file")
+  res.json({
+    message: "file uploaded successfully",
+    file: req.file,
+ //   body: req.body
+  })
+})
+
 app.use('/book', bookRoute);
 app.use('/auther', autherRoute);
 app.use('/category', categoryRoute);

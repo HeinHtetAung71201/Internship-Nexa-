@@ -23,7 +23,7 @@ const createBook = async(req, res) => {
 }
 const getAllBooks = async(req, res) => {
     try{
-        const books = await bookModel.find({}).populate('auther').populate('category');
+        const books = await bookModel.find({}).populate('auther','name').populate('category','name');
         res.status(200).json({
             message: 'Books retrieved successfully',
             books,
