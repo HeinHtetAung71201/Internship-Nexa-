@@ -1,36 +1,34 @@
-const express = require('express')
-const multer  = require('multer')
-const path = require('path');
 
-const mongoose = require('mongoose');
+const multer  = require('multer')
+const fs = require('fs');
+const path = require('path');
+const uploadDir = 'uploads/';
+
+// Ensure the directory exists
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
 const storage = multer.diskStorage({
-  destination: (_req, _file, cb) => {
-    cb(null, 'uploads/'); // save to 'uploads' directory
+
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Save to 'uploads' folder
   },
-  filename: (_req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + path.extname(file.originalname)); // unique name with original extension
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname); // Unique filename
   }
 });
 
-// File filter (optional: only accept images)
-const fileFilter = (_req, file, cb) => {
-  const allowedTypes = /jpeg|jpg|png|gif/;
-  const extName = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-  const mimeType = allowedTypes.test(file.mimetype);
-
-  if (extName && mimeType) {
-    cb(null, true);
-  } else {
-    cb(new Error('Only image files are allowed!'));
-  }
-};
-
-// Initialize upload
 const upload = multer({
   storage: storage,
-  fileFilter: fileFilter,
-  limits: { fileSize: 5 * 1024 * 1024 } // 5 MB limit
+  fileFilter: function (req, file, cb) {
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    if (allowedTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only JPEG and PNG images are allowed.'));
+    }
+  }
 });
-module.exports = upload;
 
+ 
+module.exports = upload;

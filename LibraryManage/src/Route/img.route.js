@@ -7,3 +7,7 @@ imageRouter.post('/create', upload.single('image'), createImage);
 imageRouter.get('/getAll', getAllImages);
 // Export the image router
 module.exports = imageRouter;
+
+bookRouter.post('/', 
+    upload.single('myFile'),
+    createBook);

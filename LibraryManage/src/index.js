@@ -19,10 +19,11 @@ app.use(express.json());
 
 app.use('/uploads', express.static('uploads')); 
 
-app.post('/profile', function (req, res, _next) {
+app.post('/profile', function (req, res) {
   // req.file is the `avatar` file
   // req.body will hold the text fields, if there were any
-  console.log(req.file, "file")
+  console.log(req.file, "file");
+  console.log(req.body, "body");
   res.json({
     message: "file uploaded successfully",
     file: req.file,

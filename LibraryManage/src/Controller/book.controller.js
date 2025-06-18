@@ -3,11 +3,17 @@ const bookModel = require('../Model/book.model');
 // Create a new book
 const createBook = async(req, res) => {
     try{
+        console.log(req.file, "file");
+        console.log(req.file.path, "file path");
         const {name, auther, category} = req.body;
+         const imgUrl = req.file 
+        ? `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}` 
+      : null;
         const newBook= bookModel.create({
             name,
             auther,
             category,
+            imgUrl
         })
         res.status(201).json({
             message: 'Book created successfully',

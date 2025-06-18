@@ -51,7 +51,7 @@ export const IncBook = () => {
   });
 
   // State for feedback
-  const [message, setMessage] = useState('');
+  // (Removed unused message state)
 
   // Handle input changes
   const handleChange = (e) => {
@@ -62,33 +62,55 @@ export const IncBook = () => {
   };
 
   // Handle form submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setMessage('');
-    try {
-      const response = await fetch('http://localhost:5000/book/create', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setMessage('Book added successfully!');
-        alert('Book added successfully!');
-        setFormData({ name: '', auther: '', category: '' });
-      } else {
-        setMessage(data.message || 'Failed to add book.');
-      }
-    } catch (err) {
-      setMessage('Error adding book.');
-    }
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const { name, auther, category, image } = formData;
+
+  const form = new FormData();
+  form.append('name', name);
+  form.append('auther', auther);
+  form.append('category', category);
+  form.append('avatar', image); // ✅ multer field name must be 'avatar'
+
+  try {
+    const response = await fetch('http://localhost:5000/book/create', {
+      method: 'POST',
+      body: form,
+    });
+
+    const result = await response.json();
+    console.log(result);
+  } catch (err) {
+    console.error('Upload error:', err);
+  }
+};
+
+
 
   return (
+   <>
     <div className="w-full flex justify-center items-center mt-8 flex-col">
       <h2 className="text-2xl font-bold mb-6">Add New Book</h2>
       <form className="w-full max-w-md bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-5">
+          <div className="flex items-center">
+            <label className="w-32 text-right mr-4 font-medium" htmlFor="image">Image:</label>
+            <input
+              id="image"
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={e => {
+              const file = e.target.files[0];
+              setFormData({
+                ...formData,
+                image: file
+              });
+              }}
+              className="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
           <div className="flex items-center">
             <label className="w-32 text-right mr-4 font-medium" htmlFor="name">Name:</label>
             <input
@@ -149,5 +171,7 @@ export const IncBook = () => {
       </form>
       
     </div>
+   </>
   );
 };
+
