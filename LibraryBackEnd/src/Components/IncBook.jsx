@@ -71,7 +71,7 @@ export const IncBook = () => {
   form.append('name', name);
   form.append('auther', auther);
   form.append('category', category);
-  form.append('avatar', image); // ✅ multer field name must be 'avatar'
+  form.append('avatar', image); 
 
   try {
     const response = await fetch('http://localhost:5000/book/create', {
